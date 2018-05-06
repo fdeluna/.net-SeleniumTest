@@ -64,7 +64,10 @@
     <Compile Include="Drivers\Initialization.cs" />
     <Compile Include="Drivers\DriverExtensions.cs" />
     <Compile Include="PageObject\BasePageObject.cs" />
-    <Compile Include="PageObject\SearchBoxPO.cs" />
+    <Compile Include="PageObject\FilterPO.cs" />
+    <Compile Include="PageObject\GridElementPO.cs" />
+    <Compile Include="PageObject\SearchPO.cs" />
+    <Compile Include="PageObject\SearchResultGridPO.cs" />
     <Compile Include="TestSet\DefaultTestSet.cs" />
     <Compile Include="TestSet\MessageTestSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

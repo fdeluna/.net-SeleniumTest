@@ -19,9 +19,10 @@ namespace VibboQA.Drivers
             {
                 w.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.PresenceOfAllElementsLocatedBy(selector));
             }
-            catch (TimeoutException e)
+            catch (Exception e)
             {
                 _log.ErrorFormat("The element: {0} is missing in the DOM. Waiting time: {1}", selector, time);
+                _log.Error(e);
                 elementExist = false;
             }
 
@@ -40,9 +41,10 @@ namespace VibboQA.Drivers
             {
                 w.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(selector));
             }
-            catch (TimeoutException e)
+            catch (Exception e)
             {
                 _log.ErrorFormat("The element: {0} is not visible in the page. Waiting time: {1}", selector, time);
+                _log.Error(e);
                 elementExist = false;
             }
 
