@@ -18,7 +18,6 @@ namespace VibboQA.PageObject
             this.driver = driver;
         }
 
-
         public IWebElement GetElementById(String key, TimeSpan timeOut)
         {
             IWebElement element = null;

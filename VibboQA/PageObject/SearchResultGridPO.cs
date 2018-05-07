@@ -29,14 +29,14 @@ namespace VibboQA.PageObject
 
         public void ClickElement(string subject)
         {
-            _searchResultElements.ForEach(x =>
+            foreach (GridElementPO element in _searchResultElements)
             {
-                if (subject.Equals(x.GetElementSubjectName(), StringComparison.InvariantCultureIgnoreCase))
+                if (subject.Equals(element.GetElementSubjectName(), StringComparison.InvariantCultureIgnoreCase))
                 {
-                    x.ClickElementSubjectName();
-                    return;
+                    element.ClickElementSubjectName();
+                    break;
                 }
-            });
-        }        
+            }
+        }
     }
 }

@@ -21,6 +21,5 @@ namespace VibboQA.PageObject
         {
             GetElementsByClassName("subjectTitle", new TimeSpan(0, 0, 20))[index].Click();
         }
-
     }
 }

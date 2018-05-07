@@ -65,6 +65,7 @@ namespace VibboQA.Drivers
                     break;
             }
 
+            _driver.Manage().Window.FullScreen();
             _driver.Url = _url;
 
             return _driver;

@@ -19,6 +19,14 @@ namespace VibboQA.TestSet
             filterPO.ClickApplyFilters();
             SearchResultGridPO searchResultPO = new SearchResultGridPO(driver);
             searchResultPO.ClickElement("proyector");
+
+            ElementDetailPO elementDetailPO = new ElementDetailPO(driver);
+            elementDetailPO.ClickSendMessage();
+            elementDetailPO.FillMessageBox("VibboSeleniumTest");
+            elementDetailPO.FillMessageInfo("fernando", "fernando.deluna.romero@gmail.com");
+            elementDetailPO.ClickAcceptConditions();
+            elementDetailPO.ClickSubmitMessage();
+            Assert.True(elementDetailPO.CheckMessageSent());
         }
     }
 }

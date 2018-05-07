@@ -64,6 +64,7 @@
     <Compile Include="Drivers\Initialization.cs" />
     <Compile Include="Drivers\DriverExtensions.cs" />
     <Compile Include="PageObject\BasePageObject.cs" />
+    <Compile Include="PageObject\ElementDetailPO.cs" />
     <Compile Include="PageObject\FilterPO.cs" />
     <Compile Include="PageObject\GridElementPO.cs" />
     <Compile Include="PageObject\SearchPO.cs" />

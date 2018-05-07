@@ -28,7 +28,7 @@ namespace VibboQA.TestSet
             _log.InfoFormat("CLASS: {0}: [SetUp]- METHOD: BeforeTest() ---- End", _className);
         }
 
-        //[TearDown]
+        [TearDown]
         public void AfterTest()
         {
             _log.InfoFormat("CLASS: {0}: [TearDown]- METHOD: AfterTest() ---- Start", _className);
