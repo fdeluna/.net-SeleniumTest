@@ -2,6 +2,8 @@
 using log4net.Config;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
+using System.Threading;
 using VibboQA.Drivers;
 
 namespace VibboQA.TestSet
@@ -38,6 +40,11 @@ namespace VibboQA.TestSet
                 driver.Close();
             }
             _log.InfoFormat("CLASS: {0}: [TearDown]- METHOD: AfterTest() ---- End", _className);
+        }
+
+        protected void Wait(TimeSpan time)
+        {
+            Thread.Sleep(time);
         }
     }
 }

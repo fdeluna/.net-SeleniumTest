@@ -59,7 +59,8 @@ namespace VibboQA.TestSet
             elementDetailPO.FillMessageInfo("fernando", "anarkonejo@gmail.com");
             elementDetailPO.ClickAcceptConditions();
             // Click "Enviar mensaje" button
-            elementDetailPO.ClickSubmitMessage();          
+            elementDetailPO.ClickSubmitMessage();
+            Wait(TimeSpan.FromSeconds(1));
             // Check "Tu mensaje ha sido enviado." message is displayed after submit the contact form
             Assert.True(elementDetailPO.CheckMessageSent(), "The message has not been sent correctly");
         }

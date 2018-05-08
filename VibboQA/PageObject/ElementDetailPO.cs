@@ -14,7 +14,7 @@ namespace VibboQA.PageObject
         private string _submitContactBoxId = "BContactar";
         private string _messageSentId = "ResponseEnviado";
 
-        private string _messageSentSuccesfully = " Tu mensaje ha sido enviado. ";
+        private string _messageSentSuccesfully = "Tu mensaje ha sido enviado.";
 
         public void OpenContactForm()
         {
@@ -72,7 +72,7 @@ namespace VibboQA.PageObject
         public bool CheckMessageSent()
         {
             IWebElement messageSent = GetElementById(_messageSentId, defaultTimeOut);
-            return messageSent != null ? messageSent.Text.Contains(_messageSentSuccesfully) : false;
+            return messageSent != null ? _messageSentSuccesfully.Contains(messageSent.Text) : false;
         }
     }
 }
