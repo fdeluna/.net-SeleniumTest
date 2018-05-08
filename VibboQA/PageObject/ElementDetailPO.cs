@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
 
 namespace VibboQA.PageObject
 {
@@ -7,32 +6,57 @@ namespace VibboQA.PageObject
     {
         public ElementDetailPO(IWebDriver driver) : base(driver) { }
 
+        private string _openContactBoxId = "sellerBox-show-chatForm";
+        private string _messageContactBoxId = "cmt_contact_box";
+        private string _nameContactBoxId = "name_contact_box";
+        private string _emailContactBoxId = "email_contact_box";
+        private string _phoneContactBoxId = "phone_contact_box";
+        private string _submitContactBoxId = "BContactar";
+        private string _messageSentId = "ResponseEnviado";
+
         private string _messageSentSuccesfully = " Tu mensaje ha sido enviado. ";
 
-        public void ClickSendMessage()
+        public void OpenContactForm()
         {
-            IWebElement button = GetElementById("sellerBox-show-chatForm", new TimeSpan(0, 0, 20));
+            IWebElement button = GetElementById(_openContactBoxId, defaultTimeOut);
             button.Click();
         }
 
         public void FillMessageBox(string message)
         {
-            IWebElement messageBox = GetElementById("cmt_contact_box", new TimeSpan(0, 0, 20));
+            IWebElement messageBox = GetElementById(_messageContactBoxId, defaultTimeOut);
             messageBox.SendKeys(message);
+        }
+
+        public void FillNameBox(string name)
+        {
+            IWebElement nameBox = GetElementById(_nameContactBoxId, defaultTimeOut);
+            nameBox.SendKeys(name);
+        }
+
+        public void FillEmailBox(string email)
+        {
+            IWebElement emailBox = GetElementById(_emailContactBoxId, defaultTimeOut);
+            emailBox.SendKeys(email);
+
+        }
+
+        public void FillPhoneBox(string phone)
+        {
+            IWebElement phoneBox = GetElementById(_phoneContactBoxId, defaultTimeOut);
+            phoneBox.SendKeys(phone);
         }
 
         public void FillMessageInfo(string name, string email, string phone = "")
         {
-            IWebElement nameBox = GetElementById("name_contact_box", new TimeSpan(0, 0, 20));
-            IWebElement emailBox = GetElementById("email_contact_box", new TimeSpan(0, 0, 20));
-
-            nameBox.SendKeys(name);
-            emailBox.SendKeys(email);
+            FillNameBox(name);
+            FillEmailBox(email);
+            FillPhoneBox(phone);
         }
 
         public void ClickSubmitMessage()
         {
-            IWebElement button = GetElementById("BContactar", new TimeSpan(0, 0, 20));
+            IWebElement button = GetElementById(_submitContactBoxId, defaultTimeOut);
             button.Click();
         }
 
@@ -47,9 +71,8 @@ namespace VibboQA.PageObject
 
         public bool CheckMessageSent()
         {
-            IWebElement messageSent = GetElementById("ResponseEnviado", new TimeSpan(0, 0, 20));
-            return messageSent != null ? _messageSentSuccesfully.Contains(messageSent.Text) : false;
+            IWebElement messageSent = GetElementById(_messageSentId, defaultTimeOut);
+            return messageSent != null ? messageSent.Text.Contains(_messageSentSuccesfully) : false;
         }
-
     }
 }

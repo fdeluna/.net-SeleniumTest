@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using log4net;
-using log4net.Config;
 using OpenQA.Selenium;
 using VibboQA.Drivers;
 
@@ -10,7 +9,7 @@ namespace VibboQA.PageObject
     public class BasePageObject
     {
         protected IWebDriver driver;
-        protected TimeSpan DefaultTimeOut = new TimeSpan(0, 0, 20);
+        protected TimeSpan defaultTimeOut = new TimeSpan(0, 0, 20);
         private static readonly ILog _log = LogManager.GetLogger(typeof(BasePageObject));
 
         public BasePageObject(IWebDriver driver)
@@ -18,7 +17,7 @@ namespace VibboQA.PageObject
             this.driver = driver;
         }
 
-        public IWebElement GetElementById(String key, TimeSpan timeOut)
+        protected IWebElement GetElementById(String key, TimeSpan timeOut)
         {
             IWebElement element = null;
 
@@ -37,7 +36,7 @@ namespace VibboQA.PageObject
             return element;
         }
 
-        public IList<IWebElement> GetElementsById(String key, TimeSpan timeOut)
+        protected IList<IWebElement> GetElementsById(String key, TimeSpan timeOut)
         {
             IList<IWebElement> element = null;
 
@@ -58,7 +57,7 @@ namespace VibboQA.PageObject
 
 
 
-        public IWebElement GetElementByName(String name, TimeSpan timeOut)
+        protected IWebElement GetElementByName(String name, TimeSpan timeOut)
         {
             IWebElement element = null;
 
@@ -78,7 +77,7 @@ namespace VibboQA.PageObject
         }
 
 
-        public IWebElement GetElementByXpath(String xpath, TimeSpan timeOut)
+        protected IWebElement GetElementByXpath(String xpath, TimeSpan timeOut)
         {
             IWebElement element = null;
 
@@ -97,7 +96,7 @@ namespace VibboQA.PageObject
             return element;
         }
 
-        public IList<IWebElement> GetElementsByXpath(String xpath, TimeSpan timeOut)
+        protected IList<IWebElement> GetElementsByXpath(String xpath, TimeSpan timeOut)
         {
             IList<IWebElement> element = null;
 
@@ -116,7 +115,7 @@ namespace VibboQA.PageObject
             return element;
         }
 
-        public IWebElement GetElementByClassName(String className, TimeSpan timeOut)
+        protected IWebElement GetElementByClassName(String className, TimeSpan timeOut)
         {
             IWebElement element = null;
 
@@ -136,7 +135,7 @@ namespace VibboQA.PageObject
         }
 
 
-        public IList<IWebElement> GetElementsByClassName(String className, TimeSpan timeOut)
+        protected IList<IWebElement> GetElementsByClassName(String className, TimeSpan timeOut)
         {
             IList<IWebElement> element = null;
 
@@ -156,3 +155,5 @@ namespace VibboQA.PageObject
         }
     }
 }
+
+

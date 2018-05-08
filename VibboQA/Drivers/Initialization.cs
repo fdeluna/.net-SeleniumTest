@@ -35,15 +35,9 @@ namespace VibboQA.Drivers
 
         private Initialization()
         {
-            try
-            {
-                ReadSettings();
-            }
-            catch (Exception e)
-            {
-                // TODO LOG ERROR
-                // TODO LOG SOMETHING WENTWORNG
-            }
+            _url = ConfigurationManager.AppSettings["url"];
+            _browserName = (BrowserName)Enum.Parse(typeof(BrowserName), ConfigurationManager.AppSettings["browserName"]);
+            _os = (OS)Enum.Parse(typeof(OS), ConfigurationManager.AppSettings["os"]);
         }
 
         public IWebDriver Init()
@@ -69,14 +63,6 @@ namespace VibboQA.Drivers
             _driver.Url = _url;
 
             return _driver;
-        }
-
-        private void ReadSettings()
-        {
-            _url = ConfigurationManager.AppSettings["url"];
-            _browserName = (BrowserName)Enum.Parse(typeof(BrowserName), ConfigurationManager.AppSettings["browserName"]);
-            _os = (OS)Enum.Parse(typeof(OS), ConfigurationManager.AppSettings["browserName"]);
-
         }
     }
 }

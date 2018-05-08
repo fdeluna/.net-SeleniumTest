@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using System;
+using System.Threading;
 using VibboQA.PageObject;
 
 namespace VibboQA.TestSet
@@ -6,27 +8,60 @@ namespace VibboQA.TestSet
     [TestFixture]
     class MessageTestSet : DefaultTestSet
     {
-
+        /// <summary>
+        /// Check contact form of Element detail
+        /// </summary>                
+        /// <preconditios>
+        /// - Home page is fully loaded        
+        /// </preconditios>
+        /// <testSteps>        
+        /// - Check search box is present and visible
+        /// - Search element "proyector" at "Esparreguera" location
+        /// - Filter by price to 60€
+        /// - Click "Aplicar Filtros" button
+        /// - Check element "Proyector" exist
+        /// - Check element "Proyector" price is 60€ and location is "Esparreguera"
+        /// - Click element "Proyector"
+        /// - Click "Enviar mensaje" button to open the contact form
+        /// - Fill contact form
+        /// - Click "Enviar mensaje" button        
+        /// </testSteps>
+        /// <postcondition>
+        /// - Check "Tu mensaje ha sido enviado." message is displayed after submit the contact form
+        /// </postcondition>
         [Test]
-        public void ContactItemOwner()
+        public void ContactItemOwnerSuccessfull()
         {
-            SearchPO spo = new SearchPO(driver);
-            spo.InputSearchTerm("proyector");
-            spo.InputSearchLocation("Esparreguera");
-            spo.ClickSearchButton();
-            FilterPO filterPO = new FilterPO(driver);
-            filterPO.PriceTo(60);
-            filterPO.ClickApplyFilters();
-            SearchResultGridPO searchResultPO = new SearchResultGridPO(driver);
-            searchResultPO.ClickElement("proyector");
+            HomePO homePO = new HomePO(driver);
+            //Check search box is present and visible
+            Assert.True(homePO.SearchPO.SearchBoxIsReady(), "Search box is not ready");
+            // Search element "proyector" at "Esparreguera" location
+            SearchResultPO searchResultPO = homePO.SearchPO.SearchItemLocation("proyector", "Esparreguera");
+            // Filter by price to 60€            
+            searchResultPO.FilterBoxPO.PriceTo(60);
+            // Click "Aplicar Filtros" button
+            searchResultPO.FilterBoxPO.ClickApplyFilters();
 
-            ElementDetailPO elementDetailPO = new ElementDetailPO(driver);
-            elementDetailPO.ClickSendMessage();
+            GridElementPO gridElementPO = searchResultPO.SearchResultGridPO.ElementWithName("Proyector");
+            // Check element "Proyector" exist
+            Assert.NotNull(gridElementPO, "There is no Element with name \"Proyector\"");
+
+            // Check element "Proyector" price is 60€ and location is "Esparreguera"
+            Assert.True(gridElementPO.GetElementPrice().Equals("60€", StringComparison.InvariantCultureIgnoreCase), "The element does not have the expected price ");
+            Assert.True(gridElementPO.GetElementLocation().Equals("Esparreguera", StringComparison.InvariantCultureIgnoreCase), "The element does not have the expected location ");
+
+            // Click element "Proyector" 
+            ElementDetailPO elementDetailPO = gridElementPO.ClickElementSubjectName();
+            //Click "Enviar mensaje" button to open the contact form
+            elementDetailPO.OpenContactForm();
+            // Fill contact form
             elementDetailPO.FillMessageBox("VibboSeleniumTest");
-            elementDetailPO.FillMessageInfo("fernando", "fernando.deluna.romero@gmail.com");
+            elementDetailPO.FillMessageInfo("fernando", "anarkonejo@gmail.com");
             elementDetailPO.ClickAcceptConditions();
-            elementDetailPO.ClickSubmitMessage();
-            Assert.True(elementDetailPO.CheckMessageSent());
+            // Click "Enviar mensaje" button
+            elementDetailPO.ClickSubmitMessage();          
+            // Check "Tu mensaje ha sido enviado." message is displayed after submit the contact form
+            Assert.True(elementDetailPO.CheckMessageSent(), "The message has not been sent correctly");
         }
     }
 }

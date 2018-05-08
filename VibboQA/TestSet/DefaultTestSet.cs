@@ -21,7 +21,7 @@ namespace VibboQA.TestSet
         }
 
         [SetUp]
-        public void BeforeTest()
+        protected void BeforeTest()
         {
             _log.InfoFormat("CLASS: {0}: [SetUp]- METHOD: BeforeTest() ---- Start", _className);
             driver = config.Init();
@@ -29,7 +29,7 @@ namespace VibboQA.TestSet
         }
 
         [TearDown]
-        public void AfterTest()
+        protected void AfterTest()
         {
             _log.InfoFormat("CLASS: {0}: [TearDown]- METHOD: AfterTest() ---- Start", _className);
             if (driver != null)
