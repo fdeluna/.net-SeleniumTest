@@ -2,6 +2,9 @@
 
 namespace VibboQA.PageObject
 {
+    /// <summary>
+    /// Page Object To interact with any element in the searh result page
+    /// </summary>
     public class SearchResultPO : BasePageObject
     {
         private FilterBoxPO _filterPO;

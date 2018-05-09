@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace VibboQA.PageObject
 {
+    /// <summary>
+    /// Page Object To interact with search result grid
+    /// </summary>
     public class SearchResultGridPO : BasePageObject
     {
         private IWebElement _searchResultGrid;
@@ -19,6 +22,9 @@ namespace VibboQA.PageObject
             UpdateSearchGrid();
         }
 
+        /// <summary>
+        /// Update list of WebElements existing in the grid
+        /// </summary>
         public void UpdateSearchGrid()
         {
             _searchResultElements = new List<GridElementPO>();
@@ -30,6 +36,11 @@ namespace VibboQA.PageObject
             }
         }
 
+        /// <summary>
+        /// Click any element of the grid by subject name
+        /// </summary>
+        /// <param name="subject"></param>
+        /// <returns>Element detail PO</returns>
         public ElementDetailPO ClickElement(string subject)
         {
             ElementDetailPO elementDetailPO = null;
@@ -46,6 +57,12 @@ namespace VibboQA.PageObject
             return elementDetailPO;
         }
 
+
+        /// <summary>
+        /// Return any element of the grid by subject name
+        /// </summary>
+        /// <param name="subject"></param>
+        /// <returns>Grid Elemet PO</returns>
         public GridElementPO ElementWithName(string subject)
         {
             GridElementPO gridElementPO = null;

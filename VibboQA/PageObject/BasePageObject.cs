@@ -17,25 +17,37 @@ namespace VibboQA.PageObject
             this.driver = driver;
         }
 
-        protected IWebElement GetElementById(String key, TimeSpan timeOut)
+        /// <summary>
+        /// Look for a WebElement by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="timeOut"></param>
+        /// <returns>Found element</returns>
+        protected IWebElement GetElementById(String id, TimeSpan timeOut)
         {
             IWebElement element = null;
 
-            if (!string.IsNullOrEmpty(key) && driver.WaitUntilVisible(By.Id(key), timeOut))
+            if (!string.IsNullOrEmpty(id) && driver.WaitUntilVisible(By.Id(id), timeOut))
             {
                 try
                 {
-                    element = driver.FindElement(By.Id(key));
+                    element = driver.FindElement(By.Id(id));
                 }
                 catch (Exception e)
                 {
-                    _log.ErrorFormat("Element with id: {0} is missing", key);
+                    _log.ErrorFormat("Element with id: {0} is missing", id);
                     _log.Error(e);
                 }
             }
             return element;
         }
 
+        /// <summary>
+        /// Look for all WebElements by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="timeOut"></param>
+        /// <returns>List with elements Found</returns>
         protected IList<IWebElement> GetElementsById(String key, TimeSpan timeOut)
         {
             IList<IWebElement> element = null;
@@ -56,7 +68,12 @@ namespace VibboQA.PageObject
         }
 
 
-
+        /// <summary>
+        /// Look for a WebElement by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="timeOut"></param>
+        /// <returns>Found element</returns>
         protected IWebElement GetElementByName(String name, TimeSpan timeOut)
         {
             IWebElement element = null;
@@ -76,7 +93,12 @@ namespace VibboQA.PageObject
             return element;
         }
 
-
+        /// <summary>
+        /// Look for a WebElement by xpath
+        /// </summary>
+        /// <param name="xpath"></param>
+        /// <param name="timeOut"></param>
+        /// <returns>Found element</returns>
         protected IWebElement GetElementByXpath(String xpath, TimeSpan timeOut)
         {
             IWebElement element = null;
@@ -96,6 +118,13 @@ namespace VibboQA.PageObject
             return element;
         }
 
+
+        /// <summary>
+        /// Look for all WebElements by xpath
+        /// </summary>
+        /// <param name="xpath"></param>
+        /// <param name="timeOut"></param>
+        /// <returns>List with elements Found</returns>
         protected IList<IWebElement> GetElementsByXpath(String xpath, TimeSpan timeOut)
         {
             IList<IWebElement> element = null;
@@ -115,6 +144,12 @@ namespace VibboQA.PageObject
             return element;
         }
 
+        /// <summary>
+        /// Look for a WebElement by classname
+        /// </summary>
+        /// <param name="className"></param>
+        /// <param name="timeOut"></param>
+        /// <returns>Found element</returns>
         protected IWebElement GetElementByClassName(String className, TimeSpan timeOut)
         {
             IWebElement element = null;
@@ -135,6 +170,12 @@ namespace VibboQA.PageObject
         }
 
 
+        /// <summary>
+        /// Look for all WebElements by className
+        /// </summary>
+        /// <param name="className"></param>
+        /// <param name="timeOut"></param>
+        /// <returns>List with elements Found</returns>
         protected IList<IWebElement> GetElementsByClassName(String className, TimeSpan timeOut)
         {
             IList<IWebElement> element = null;
